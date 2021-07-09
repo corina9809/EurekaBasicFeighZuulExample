@@ -1,12 +1,11 @@
 package feignclient;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.stereotype.Service;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient("spring-cloud-eureka-client")
-@Service
+@FeignClient(value="spring-cloud-eureka-client", url="http://localhost:8081/getVersion")
 public interface GreetingClient {
-    @RequestMapping("/greeting")
+    @GetMapping
     String greeting();
 }
